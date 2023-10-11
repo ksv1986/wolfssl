@@ -6020,6 +6020,74 @@ WOLFSSL_LOCAL int wolfSSL_quic_keys_active(WOLFSSL* ssl, enum encrypt_side side)
 #define WOLFSSL_IS_QUIC(s) 0
 #endif /* WOLFSSL_QUIC (else) */
 
+//////////////// << moved from internal.c
+
+#if defined(HAVE_ENCRYPT_THEN_MAC) && !defined(WOLFSSL_AEAD_ONLY)
+static word32 MacSize(WOLFSSL* ssl)
+{
+#ifdef HAVE_TRUNCATED_HMAC
+    word32 digestSz = ssl->truncated_hmac ? (byte)TRUNCATED_HMAC_SZ
+                                          : ssl->specs.hash_size;
+#else
+    word32 digestSz = ssl->specs.hash_size;
+#endif
+
+    return digestSz;
+}
+#endif /* HAVE_ENCRYPT_THEN_MAC && !WOLFSSL_AEAD_ONLY */
+
+//////////////// << moved from internal.c
+
+#if !defined(NO_WOLFSSL_SERVER) || !defined(NO_WOLFSSL_CLIENT)
+    /* cipher requirements */
+    enum {
+        REQUIRES_RSA,
+        REQUIRES_DHE,
+        REQUIRES_ECC,
+        REQUIRES_ECC_STATIC,
+        REQUIRES_PSK,
+        REQUIRES_RSA_SIG,
+        REQUIRES_AEAD
+    };
+#endif
+
+//////////////// << moved from internal.c
+
+#ifndef WOLFSSL_NO_TLS12
+#if !defined(NO_WOLFSSL_SERVER) || !defined(NO_WOLFSSL_CLIENT)
+
+/* Server random bytes for TLS v1.3 described downgrade protection mechanism. */
+static const byte tls13Downgrade[7] = {
+    0x44, 0x4f, 0x57, 0x4e, 0x47, 0x52, 0x44
+};
+#define TLS13_DOWNGRADE_SZ  sizeof(tls13Downgrade)
+
+#endif /* !NO_WOLFSSL_SERVER || !NO_WOLFSSL_CLIENT */
+#endif
+
+//////////////// << moved from internal.c
+
+#ifndef WOLFSSL_NO_TLS12
+#ifndef NO_WOLFSSL_CLIENT
+    static int DoServerKeyExchange(WOLFSSL* ssl, const byte* input,
+                                   word32* inOutIdx, word32 size);
+    #ifndef NO_CERTS
+        static int DoCertificateRequest(WOLFSSL* ssl, const byte* input,
+                                        word32* inOutIdx, word32 size);
+    #endif
+    #ifdef HAVE_SESSION_TICKET
+        static int DoSessionTicket(WOLFSSL* ssl, const byte* input,
+                                   word32* inOutIdx, word32 size);
+    #endif
+#endif
+#endif
+
+///////////////
+
+void AddHeaders(byte* output, word32 length, byte type, WOLFSSL* ssl);
+
+///////////////
+
 #ifdef __cplusplus
     }  /* extern "C" */
 #endif

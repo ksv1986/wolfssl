@@ -51,6 +51,15 @@
             #define WOLFSSL_API
         #endif
         #define WOLFSSL_LOCAL
+    #elif defined(WIN16)
+        #if defined(WOLFSSL_DLL)
+            // For 16-bit DLLs, __far __pascal __export needs to come after
+            // the type so this macro is not useful.
+            #define WOLFSSL_API
+        #else
+            #define WOLFSSL_API
+        #endif
+        #define WOLFSSL_LOCAL
     #elif defined(HAVE_VISIBILITY) && HAVE_VISIBILITY
         #define WOLFSSL_API   __attribute__ ((visibility("default")))
         #define WOLFSSL_LOCAL __attribute__ ((visibility("hidden")))

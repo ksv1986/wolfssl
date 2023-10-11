@@ -143,7 +143,7 @@ THREAD_LS_T int wc_svr_last_line = -1;
 
 
 /* allow this to be set to NULL, so logs can be redirected to default output */
-int wolfSSL_SetLoggingCb(wolfSSL_Logging_cb f)
+int WOLFSSL_16BIT_API wolfSSL_SetLoggingCb(wolfSSL_Logging_cb f)
 {
 #ifdef DEBUG_WOLFSSL
     log_function = f;
@@ -165,7 +165,7 @@ wolfSSL_Logging_cb wolfSSL_GetLoggingCb(void)
 }
 
 
-int wolfSSL_Debugging_ON(void)
+int WOLFSSL_16BIT_API wolfSSL_Debugging_ON(void)
 {
 #ifdef DEBUG_WOLFSSL
     loggingEnabled = 1;

@@ -12504,7 +12504,7 @@ int TLSX_Parse(WOLFSSL* ssl, const byte* input, word16 length, byte msgType,
 
 #ifndef NO_WOLFSSL_CLIENT
 
-    WOLFSSL_METHOD* wolfTLS_client_method(void)
+    WOLFSSL_METHOD* WOLFSSL_16BIT_API wolfTLS_client_method(void)
     {
         return wolfTLS_client_method_ex(NULL);
     }
@@ -12572,7 +12572,7 @@ int TLSX_Parse(WOLFSSL* ssl, const byte* input, word16 length, byte msgType,
 
 #ifndef WOLFSSL_NO_TLS12
     WOLFSSL_ABI
-    WOLFSSL_METHOD* wolfTLSv1_2_client_method(void)
+    WOLFSSL_METHOD* WOLFSSL_16BIT_API wolfTLSv1_2_client_method(void)
     {
         return wolfTLSv1_2_client_method_ex(NULL);
     }
@@ -12595,7 +12595,7 @@ int TLSX_Parse(WOLFSSL* ssl, const byte* input, word16 length, byte msgType,
      * returns the method data for a TLS v1.3 client.
      */
     WOLFSSL_ABI
-    WOLFSSL_METHOD* wolfTLSv1_3_client_method(void)
+    WOLFSSL_METHOD* WOLFSSL_16BIT_API wolfTLSv1_3_client_method(void)
     {
         return wolfTLSv1_3_client_method_ex(NULL);
     }

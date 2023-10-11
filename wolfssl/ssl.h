@@ -846,7 +846,7 @@ typedef WOLFSSL_METHOD* (*wolfSSL_method_func)(void* heap);
 
 #ifndef NO_WOLFSSL_CLIENT
     WOLFSSL_API WOLFSSL_METHOD *wolfTLS_client_method_ex(void* heap);
-    WOLFSSL_API WOLFSSL_METHOD *wolfTLS_client_method(void);
+    WOLFSSL_API WOLFSSL_METHOD * WOLFSSL_16BIT_API wolfTLS_client_method(void);
 #endif
 #ifndef NO_WOLFSSL_SERVER
     WOLFSSL_API WOLFSSL_METHOD *wolfTLS_server_method_ex(void* heap);
@@ -918,7 +918,7 @@ WOLFSSL_API WOLFSSL_METHOD *wolfSSLv23_method(void);
     WOLFSSL_API WOLFSSL_METHOD *wolfTLSv1_2_method(void);
 #ifndef NO_WOLFSSL_CLIENT
     WOLFSSL_API WOLFSSL_METHOD *wolfTLSv1_2_client_method_ex(void* heap);
-    WOLFSSL_ABI WOLFSSL_API WOLFSSL_METHOD *wolfTLSv1_2_client_method(void);
+    WOLFSSL_ABI WOLFSSL_API WOLFSSL_METHOD * WOLFSSL_16BIT_API wolfTLSv1_2_client_method(void);
 #endif
 #ifndef NO_WOLFSSL_SERVER
     WOLFSSL_API WOLFSSL_METHOD *wolfTLSv1_2_server_method_ex(void* heap);
@@ -931,7 +931,7 @@ WOLFSSL_API WOLFSSL_METHOD *wolfSSLv23_method(void);
     WOLFSSL_API WOLFSSL_METHOD *wolfTLSv1_3_method(void);
 #ifndef NO_WOLFSSL_CLIENT
     WOLFSSL_API WOLFSSL_METHOD *wolfTLSv1_3_client_method_ex(void* heap);
-    WOLFSSL_ABI WOLFSSL_API WOLFSSL_METHOD *wolfTLSv1_3_client_method(void);
+    WOLFSSL_ABI WOLFSSL_API WOLFSSL_METHOD * WOLFSSL_16BIT_API wolfTLSv1_3_client_method(void);
 #endif
 #ifndef NO_WOLFSSL_SERVER
     WOLFSSL_API WOLFSSL_METHOD *wolfTLSv1_3_server_method_ex(void* heap);
@@ -1073,7 +1073,7 @@ WOLFSSL_API void wolfSSL_CTX_set_verify_depth(WOLFSSL_CTX *ctx,int depth);
 
 WOLFSSL_API int wolfSSL_CTX_load_verify_locations_ex(
     WOLFSSL_CTX* ctx, const char* file, const char* path, word32 flags);
-WOLFSSL_ABI WOLFSSL_API int wolfSSL_CTX_load_verify_locations(
+WOLFSSL_ABI WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_CTX_load_verify_locations(
     WOLFSSL_CTX* ctx, const char* file, const char* path);
 #ifndef _WIN32
 WOLFSSL_API const char** wolfSSL_get_system_CA_dirs(word32* num);
@@ -1110,7 +1110,7 @@ WOLFSSL_API int wolfSSL_use_RSAPrivateKey_file(
 #endif /* !NO_FILESYSTEM && !NO_CERTS */
 
 WOLFSSL_API WOLFSSL_CTX* wolfSSL_CTX_new_ex(WOLFSSL_METHOD* method, void* heap);
-WOLFSSL_ABI WOLFSSL_API WOLFSSL_CTX* wolfSSL_CTX_new(WOLFSSL_METHOD* method);
+WOLFSSL_ABI WOLFSSL_API WOLFSSL_CTX* WOLFSSL_16BIT_API wolfSSL_CTX_new(WOLFSSL_METHOD* method);
 WOLFSSL_API int wolfSSL_CTX_up_ref(WOLFSSL_CTX* ctx);
 #ifdef OPENSSL_EXTRA
 WOLFSSL_API int wolfSSL_CTX_set_ecdh_auto(WOLFSSL_CTX* ctx, int onoff);
@@ -1119,14 +1119,14 @@ WOLFSSL_API int  wolfSSL_CTX_set1_sigalgs_list(WOLFSSL_CTX* ctx,
                                                const char* list);
 WOLFSSL_API int  wolfSSL_set1_sigalgs_list(WOLFSSL* ssl, const char* list);
 #endif
-WOLFSSL_ABI WOLFSSL_API WOLFSSL* wolfSSL_new(WOLFSSL_CTX* ctx);
+WOLFSSL_ABI WOLFSSL_API WOLFSSL* WOLFSSL_16BIT_API wolfSSL_new(WOLFSSL_CTX* ctx);
 WOLFSSL_API WOLFSSL_CTX* wolfSSL_get_SSL_CTX(WOLFSSL* ssl);
 WOLFSSL_API WOLFSSL_X509_VERIFY_PARAM* wolfSSL_CTX_get0_param(WOLFSSL_CTX* ctx);
 WOLFSSL_API WOLFSSL_X509_VERIFY_PARAM* wolfSSL_get0_param(WOLFSSL* ssl);
 WOLFSSL_API int wolfSSL_CTX_set1_param(WOLFSSL_CTX* ctx, WOLFSSL_X509_VERIFY_PARAM *vpm);
 WOLFSSL_API int  wolfSSL_is_server(WOLFSSL* ssl);
 WOLFSSL_API WOLFSSL* wolfSSL_write_dup(WOLFSSL* ssl);
-WOLFSSL_ABI WOLFSSL_API int  wolfSSL_set_fd(WOLFSSL* ssl, int fd);
+WOLFSSL_ABI WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_set_fd(WOLFSSL* ssl, int fd);
 #ifdef WOLFSSL_DTLS
 WOLFSSL_API int wolfSSL_set_dtls_fd_connected(WOLFSSL* ssl, int fd);
 #endif
@@ -1148,10 +1148,10 @@ WOLFSSL_API const char* wolfSSL_get_shared_ciphers(WOLFSSL* ssl, char* buf,
 WOLFSSL_API const char* wolfSSL_get_curve_name(WOLFSSL* ssl);
 WOLFSSL_API int  wolfSSL_get_fd(const WOLFSSL* ssl);
 /* please see note at top of README if you get an error from connect */
-WOLFSSL_ABI WOLFSSL_API int  wolfSSL_connect(WOLFSSL* ssl);
-WOLFSSL_ABI WOLFSSL_API int  wolfSSL_write(
+WOLFSSL_ABI WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_connect(WOLFSSL* ssl);
+WOLFSSL_ABI WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_write(
     WOLFSSL* ssl, const void* data, int sz);
-WOLFSSL_ABI WOLFSSL_API int  wolfSSL_read(WOLFSSL* ssl, void* data, int sz);
+WOLFSSL_ABI WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_read(WOLFSSL* ssl, void* data, int sz);
 WOLFSSL_API int  wolfSSL_peek(WOLFSSL* ssl, void* data, int sz);
 WOLFSSL_ABI WOLFSSL_API int  wolfSSL_accept(WOLFSSL* ssl);
 WOLFSSL_API int  wolfSSL_CTX_mutual_auth(WOLFSSL_CTX* ctx, int req);
@@ -1208,16 +1208,16 @@ WOLFSSL_API unsigned int wolfSSL_SESSION_get_max_early_data(const WOLFSSL_SESSIO
 #endif /* OPENSSL_EXTRA */
 #endif /* WOLFSSL_EARLY_DATA */
 #endif /* WOLFSSL_TLS13 */
-WOLFSSL_ABI WOLFSSL_API void wolfSSL_CTX_free(WOLFSSL_CTX* ctx);
-WOLFSSL_ABI WOLFSSL_API void wolfSSL_free(WOLFSSL* ssl);
-WOLFSSL_ABI WOLFSSL_API int  wolfSSL_shutdown(WOLFSSL* ssl);
+WOLFSSL_ABI WOLFSSL_API void WOLFSSL_16BIT_API wolfSSL_CTX_free(WOLFSSL_CTX* ctx);
+WOLFSSL_ABI WOLFSSL_API void WOLFSSL_16BIT_API wolfSSL_free(WOLFSSL* ssl);
+WOLFSSL_ABI WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_shutdown(WOLFSSL* ssl);
 WOLFSSL_API int  wolfSSL_send(WOLFSSL* ssl, const void* data, int sz, int flags);
 WOLFSSL_API int  wolfSSL_recv(WOLFSSL* ssl, void* data, int sz, int flags);
 
 WOLFSSL_API void wolfSSL_CTX_set_quiet_shutdown(WOLFSSL_CTX* ctx, int mode);
 WOLFSSL_API void wolfSSL_set_quiet_shutdown(WOLFSSL* ssl, int mode);
 
-WOLFSSL_ABI WOLFSSL_API int  wolfSSL_get_error(WOLFSSL* ssl, int ret);
+WOLFSSL_ABI WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_get_error(WOLFSSL* ssl, int ret);
 WOLFSSL_API int  wolfSSL_get_alert_history(WOLFSSL* ssl, WOLFSSL_ALERT_HISTORY *h);
 
 WOLFSSL_ABI WOLFSSL_API int  wolfSSL_set_session(WOLFSSL* ssl, WOLFSSL_SESSION* session);
@@ -1307,7 +1307,7 @@ WOLFSSL_API int  wolfSSL_get_ex_new_index(long argValue, void* arg,
 
 #endif
 
-WOLFSSL_ABI WOLFSSL_API void wolfSSL_CTX_set_verify(WOLFSSL_CTX* ctx, int mode,
+WOLFSSL_ABI WOLFSSL_API void WOLFSSL_16BIT_API wolfSSL_CTX_set_verify(WOLFSSL_CTX* ctx, int mode,
                                       VerifyCallback verify_callback);
 
 #ifdef OPENSSL_ALL
@@ -2806,9 +2806,9 @@ WOLFSSL_API int  wolfSSL_CTX_get_ex_new_index(long idx, void* arg, void* a, void
 WOLFSSL_ABI WOLFSSL_API int wolfSSL_check_domain_name(WOLFSSL* ssl, const char* dn);
 
 /* need to call once to load library (session cache) */
-WOLFSSL_ABI WOLFSSL_API int wolfSSL_Init(void);
+WOLFSSL_ABI WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_Init(void);
 /* call when done to cleanup/free session cache mutex / resources  */
-WOLFSSL_ABI WOLFSSL_API int wolfSSL_Cleanup(void);
+WOLFSSL_ABI WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_Cleanup(void);
 
 /* which library version do we have */
 WOLFSSL_API const char* wolfSSL_lib_version(void);
@@ -3703,10 +3703,10 @@ enum {
     WOLFSSL_SNI_HOST_NAME = 0
 };
 
-WOLFSSL_ABI WOLFSSL_API int wolfSSL_UseSNI(WOLFSSL* ssl, unsigned char type,
-                                                   const void* data, unsigned short size);
-WOLFSSL_ABI WOLFSSL_API int wolfSSL_CTX_UseSNI(WOLFSSL_CTX* ctx, unsigned char type,
-                                                   const void* data, unsigned short size);
+WOLFSSL_ABI WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_UseSNI(WOLFSSL* ssl, unsigned char type,
+                                                   const void* data, word16 size);
+WOLFSSL_ABI WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_CTX_UseSNI(WOLFSSL_CTX* ctx, unsigned char type,
+                                                   const void* data, word16 size);
 
 #ifndef NO_WOLFSSL_SERVER
 

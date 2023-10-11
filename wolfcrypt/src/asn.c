@@ -6848,7 +6848,8 @@ int ToTraditional(byte* input, word32 sz)
 
 #endif /* HAVE_PKCS8 || HAVE_PKCS12 */
 
-#if defined(HAVE_PKCS8) && !defined(NO_CERTS)
+//#if defined(HAVE_PKCS8) && !defined(NO_CERTS)
+#if (1)
 
 int wc_GetPkcs8TraditionalOffset(byte* input, word32* inOutIdx, word32 sz)
 {
@@ -22390,6 +22391,8 @@ int SetSerialNumber(const byte* sn, word32 snSz, byte* output,
 #endif /* !WOLFSSL_ASN_TEMPLATE */
 
 #endif /* !NO_CERTS */
+
+
 
 #ifndef WOLFSSL_ASN_TEMPLATE
 int wc_GetSerialNumber(const byte* input, word32* inOutIdx,

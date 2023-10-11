@@ -44,6 +44,10 @@
 
 
 /* GENERIC INCLUDE SECTION */
+#if defined(WIN16)
+    #include <windows.h>
+#endif
+
 #if defined(FREESCALE_MQX) || defined(FREESCALE_KSDK_MQX)
     #include <mqx.h>
     #if (defined(MQX_USE_IO_OLD) && MQX_USE_IO_OLD) || \

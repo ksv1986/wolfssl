@@ -92,11 +92,11 @@ enum wc_FuncNum {
 typedef void (*wolfSSL_Logging_cb)(const int logLevel,
                                    const char *const logMessage);
 
-WOLFSSL_API int wolfSSL_SetLoggingCb(wolfSSL_Logging_cb log_function);
+WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_SetLoggingCb(wolfSSL_Logging_cb log_function);
 WOLFSSL_API wolfSSL_Logging_cb wolfSSL_GetLoggingCb(void);
 
 /* turn logging on, only if compiled in */
-WOLFSSL_API int  wolfSSL_Debugging_ON(void);
+WOLFSSL_API int WOLFSSL_16BIT_API wolfSSL_Debugging_ON(void);
 /* turn logging off */
 WOLFSSL_API void wolfSSL_Debugging_OFF(void);
 

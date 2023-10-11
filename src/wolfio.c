@@ -1924,7 +1924,7 @@ int EmbedCrlLookup(WOLFSSL_CRL* crl, const char* url, int urlSz)
 
 
 
-void wolfSSL_CTX_SetIORecv(WOLFSSL_CTX *ctx, CallbackIORecv CBIORecv)
+void WOLFSSL_16BIT_API wolfSSL_CTX_SetIORecv(WOLFSSL_CTX *ctx, CallbackIORecv CBIORecv)
 {
     if (ctx) {
         ctx->CBIORecv = CBIORecv;
@@ -1935,7 +1935,7 @@ void wolfSSL_CTX_SetIORecv(WOLFSSL_CTX *ctx, CallbackIORecv CBIORecv)
 }
 
 
-void wolfSSL_CTX_SetIOSend(WOLFSSL_CTX *ctx, CallbackIOSend CBIOSend)
+void WOLFSSL_16BIT_API wolfSSL_CTX_SetIOSend(WOLFSSL_CTX *ctx, CallbackIOSend CBIOSend)
 {
     if (ctx) {
         ctx->CBIOSend = CBIOSend;
@@ -1947,7 +1947,7 @@ void wolfSSL_CTX_SetIOSend(WOLFSSL_CTX *ctx, CallbackIOSend CBIOSend)
 
 
 /* sets the IO callback to use for receives at WOLFSSL level */
-void wolfSSL_SSLSetIORecv(WOLFSSL *ssl, CallbackIORecv CBIORecv)
+void WOLFSSL_16BIT_API wolfSSL_SSLSetIORecv(WOLFSSL *ssl, CallbackIORecv CBIORecv)
 {
     if (ssl) {
         ssl->CBIORecv = CBIORecv;
@@ -1959,7 +1959,7 @@ void wolfSSL_SSLSetIORecv(WOLFSSL *ssl, CallbackIORecv CBIORecv)
 
 
 /* sets the IO callback to use for sends at WOLFSSL level */
-void wolfSSL_SSLSetIOSend(WOLFSSL *ssl, CallbackIOSend CBIOSend)
+void WOLFSSL_16BIT_API wolfSSL_SSLSetIOSend(WOLFSSL *ssl, CallbackIOSend CBIOSend)
 {
     if (ssl) {
         ssl->CBIOSend = CBIOSend;
@@ -1970,14 +1970,14 @@ void wolfSSL_SSLSetIOSend(WOLFSSL *ssl, CallbackIOSend CBIOSend)
 }
 
 
-void wolfSSL_SetIOReadCtx(WOLFSSL* ssl, void *rctx)
+void WOLFSSL_16BIT_API wolfSSL_SetIOReadCtx(WOLFSSL* ssl, void *rctx)
 {
     if (ssl)
         ssl->IOCB_ReadCtx = rctx;
 }
 
 
-void wolfSSL_SetIOWriteCtx(WOLFSSL* ssl, void *wctx)
+void WOLFSSL_16BIT_API wolfSSL_SetIOWriteCtx(WOLFSSL* ssl, void *wctx)
 {
     if (ssl)
         ssl->IOCB_WriteCtx = wctx;

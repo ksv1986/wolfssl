@@ -553,7 +553,7 @@ WOLFSSL_CTX* wolfSSL_CTX_new_ex(WOLFSSL_METHOD* method, void* heap)
 
 
 WOLFSSL_ABI
-WOLFSSL_CTX* wolfSSL_CTX_new(WOLFSSL_METHOD* method)
+WOLFSSL_CTX* WOLFSSL_16BIT_API wolfSSL_CTX_new(WOLFSSL_METHOD* method)
 {
 #ifdef WOLFSSL_HEAP_TEST
     /* if testing the heap hint then set top level CTX to have test value */
@@ -571,7 +571,7 @@ int wolfSSL_CTX_up_ref(WOLFSSL_CTX* ctx)
 }
 
 WOLFSSL_ABI
-void wolfSSL_CTX_free(WOLFSSL_CTX* ctx)
+void WOLFSSL_16BIT_API wolfSSL_CTX_free(WOLFSSL_CTX* ctx)
 {
     WOLFSSL_ENTER("SSL_CTX_free");
     if (ctx) {
@@ -658,7 +658,7 @@ int wolfSSL_CTX_new_rng(WOLFSSL_CTX* ctx)
 
 
 WOLFSSL_ABI
-WOLFSSL* wolfSSL_new(WOLFSSL_CTX* ctx)
+WOLFSSL* WOLFSSL_16BIT_API wolfSSL_new(WOLFSSL_CTX* ctx)
 {
     WOLFSSL* ssl = NULL;
     int ret = 0;
@@ -683,7 +683,7 @@ WOLFSSL* wolfSSL_new(WOLFSSL_CTX* ctx)
 
 
 WOLFSSL_ABI
-void wolfSSL_free(WOLFSSL* ssl)
+void WOLFSSL_16BIT_API wolfSSL_free(WOLFSSL* ssl)
 {
     WOLFSSL_ENTER("SSL_free");
     if (ssl)
@@ -888,7 +888,7 @@ int wolfSSL_use_old_poly(WOLFSSL* ssl, int value)
 
 
 WOLFSSL_ABI
-int wolfSSL_set_fd(WOLFSSL* ssl, int fd)
+int WOLFSSL_16BIT_API wolfSSL_set_fd(WOLFSSL* ssl, int fd)
 {
     int ret;
 
@@ -2416,7 +2416,7 @@ int wolfSSL_GetDhKey_Sz(WOLFSSL* ssl)
 
 
 WOLFSSL_ABI
-int wolfSSL_write(WOLFSSL* ssl, const void* data, int sz)
+int WOLFSSL_16BIT_API wolfSSL_write(WOLFSSL* ssl, const void* data, int sz)
 {
     int ret;
 
@@ -2593,7 +2593,7 @@ int wolfSSL_peek(WOLFSSL* ssl, void* data, int sz)
 
 
 WOLFSSL_ABI
-int wolfSSL_read(WOLFSSL* ssl, void* data, int sz)
+int WOLFSSL_16BIT_API wolfSSL_read(WOLFSSL* ssl, void* data, int sz)
 {
     WOLFSSL_ENTER("wolfSSL_read()");
 
@@ -2678,7 +2678,7 @@ void* wolfSSL_CTX_GetHeap(WOLFSSL_CTX* ctx, WOLFSSL* ssl)
 #ifdef HAVE_SNI
 
 WOLFSSL_ABI
-int wolfSSL_UseSNI(WOLFSSL* ssl, byte type, const void* data, word16 size)
+int WOLFSSL_16BIT_API wolfSSL_UseSNI(WOLFSSL* ssl, byte type, const void* data, word16 size)
 {
     if (ssl == NULL)
         return BAD_FUNC_ARG;
@@ -2688,7 +2688,7 @@ int wolfSSL_UseSNI(WOLFSSL* ssl, byte type, const void* data, word16 size)
 
 
 WOLFSSL_ABI
-int wolfSSL_CTX_UseSNI(WOLFSSL_CTX* ctx, byte type, const void* data,
+int WOLFSSL_16BIT_API wolfSSL_CTX_UseSNI(WOLFSSL_CTX* ctx, byte type, const void* data,
                                                                     word16 size)
 {
     if (ctx == NULL)
@@ -3636,7 +3636,7 @@ int wolfSSL_recv(WOLFSSL* ssl, void* data, int sz, int flags)
 
 /* WOLFSSL_SUCCESS on ok */
 WOLFSSL_ABI
-int wolfSSL_shutdown(WOLFSSL* ssl)
+int WOLFSSL_16BIT_API wolfSSL_shutdown(WOLFSSL* ssl)
 {
     int  ret = WOLFSSL_FATAL_ERROR;
     WOLFSSL_ENTER("SSL_shutdown()");
@@ -3719,7 +3719,7 @@ int wolfSSL_state(WOLFSSL* ssl)
 
 
 WOLFSSL_ABI
-int wolfSSL_get_error(WOLFSSL* ssl, int ret)
+int WOLFSSL_16BIT_API wolfSSL_get_error(WOLFSSL* ssl, int ret)
 {
     WOLFSSL_ENTER("SSL_get_error");
 
@@ -5604,7 +5604,7 @@ static void AtExitCleanup(void)
 #endif
 
 WOLFSSL_ABI
-int wolfSSL_Init(void)
+int WOLFSSL_16BIT_API wolfSSL_Init(void)
 {
     int ret = WOLFSSL_SUCCESS;
 #if !defined(NO_SESSION_CACHE) && defined(ENABLE_SESSION_CACHE_ROW_LOCK)
@@ -8083,7 +8083,7 @@ int wolfSSL_CTX_load_verify_locations_ex(WOLFSSL_CTX* ctx, const char* file,
 }
 
 WOLFSSL_ABI
-int wolfSSL_CTX_load_verify_locations(WOLFSSL_CTX* ctx, const char* file,
+int WOLFSSL_16BIT_API wolfSSL_CTX_load_verify_locations(WOLFSSL_CTX* ctx, const char* file,
                                      const char* path)
 {
     int ret = wolfSSL_CTX_load_verify_locations_ex(ctx, file, path,
@@ -10474,7 +10474,7 @@ static SetVerifyOptions ModeToVerifyOptions(int mode)
 }
 
 WOLFSSL_ABI
-void wolfSSL_CTX_set_verify(WOLFSSL_CTX* ctx, int mode, VerifyCallback vc)
+void WOLFSSL_16BIT_API wolfSSL_CTX_set_verify(WOLFSSL_CTX* ctx, int mode, VerifyCallback vc)
 {
     SetVerifyOptions opts;
 
@@ -12525,7 +12525,7 @@ int wolfSSL_DTLS_SetCookieSecret(WOLFSSL* ssl,
 
     /* please see note at top of README if you get an error from connect */
     WOLFSSL_ABI
-    int wolfSSL_connect(WOLFSSL* ssl)
+    int WOLFSSL_16BIT_API wolfSSL_connect(WOLFSSL* ssl)
     {
     #if !(defined(WOLFSSL_NO_TLS12) && defined(NO_OLD_TLS) && defined(WOLFSSL_TLS13))
         int neededState;
@@ -13498,7 +13498,7 @@ int wolfSSL_SetHsDoneCb(WOLFSSL* ssl, HandShakeDoneCb cb, void* user_ctx)
 #endif /* NO_HANDSHAKE_DONE_CB */
 
 WOLFSSL_ABI
-int wolfSSL_Cleanup(void)
+int WOLFSSL_16BIT_API wolfSSL_Cleanup(void)
 {
     int ret = WOLFSSL_SUCCESS; /* Only the first error will be returned */
     int release = 0;
@@ -20577,7 +20577,8 @@ static int wolfSSL_DupSessionEx(const WOLFSSL_SESSION* input,
     int   ticLenAlloc = 0;
     byte *ticBuff = NULL;
 #endif
-    const size_t copyOffset = OFFSETOF(WOLFSSL_SESSION, heap) + sizeof(input->heap);
+    //const size_t copyOffset = OFFSETOF(WOLFSSL_SESSION, heap) + sizeof(input->heap);
+    const size_t copyOffset = (size_t)&(((WOLFSSL_SESSION *)0)->heap) + sizeof(input->heap);
     int ret = WOLFSSL_SUCCESS;
 
     (void)avoidSysCalls;
